@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Clean Center</string>
+    <string name="clean_memory_button">一键清理</string>
+    <string name="clean_memory_title">内存清理</string>
+    <string name="clean_garbage_title">垃圾清理</string>
+    <string name="clean_permisson_title">权限管理</string>
+    <string name="clean_battery_save_title">电池保护</string>
+    
+    <string name="clean_garbage_cache">缓存垃圾</string>
+    <string name="clean_garbage_uninstall_remain">卸载残留</string>
+    <string name="clean_garbage_ad">广告文件</string>
+    <string name="clean_garbage_unused_packages">无用安装包</string>
+    <string name="clean_garbage_junk_files">垃圾文件</string>
+    
+    <string name="permissions_auto_run_when_power_up">开机自动启动</string>
+    <string name="permissions_app_notification_manager">应用通知管理</string>
+    <string name="permissions_app_permission_manager">应用权限管理</string>
+    <string name="permissions_intelligent_background">智能后台</string>
+
+    <string name="fa_android">&#xf17b;</string>
+    <string name="fa_file_text_o">&#xf0f6;</string>
+    <string name="fa_inbox">&#xf01c;</string>
+    <string name="fa_ad">&#xf170;</string>
+    <string name="fa_folder">&#xf114;</string>
+
+    <string name="fa_power_off">&#xf011;</string>
+    <string name="fa_comment">&#xf075;</string>
+    <string name="fa_shield">&#xf132;</string>
+    <string name="fa_tasks">&#xf0ae;</string>
+    <!--垃圾清理列表项的加载圆圈-->
+    <string name="fa_spinner">&#xf110;</string>
+    <string name="fa_check_circle">&#xf058;</string>
+    <string name="memory_running_apps">正在运行的程序 :</string>
+    <string name="to_be_clean">可清理的内存为：</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorMemory">#5CACEE</color>
+    <color name="colorMemoryDark">#6495ED</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorGarbage">#4A708B</color>
+    <color name="colorPermissions">#483D8B</color>
+    <color name="colorBattery">#20B2AA</color>
+    <color name="colorGray">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorBackgroud">#CCCCCC</color>
+    <color name="black">#000000</color>
+    <color name="colorGreen">#00FF00</color>
+    <color name="colorControlNormal">#ffb1a2ff</color>
+    <color name="colorControlActivated">#fffa3bff</color>
+</resources>

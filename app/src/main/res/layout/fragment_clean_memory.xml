@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/colorMemory"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/to_be_clean" />
+        <TextView
+            android:id="@+id/memory_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="90sp" />
+        <TextView
+            android:id="@+id/memory_sup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/memory_text"
+            android:layout_alignTop="@id/memory_text"
+            android:paddingLeft="10dp"
+            android:text="Mb"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/memory_list_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="60dp">
+
+        <TextView
+            android:id="@+id/memory_list_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/memory_running_apps" />
+
+        <CheckBox
+            android:id="@+id/memory_header_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:theme="@style/checkboxTheme" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1" />
+
+    <!--<Button-->
+    <!--android:id="@+id/memory_clear"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="15dp"-->
+    <!--android:layout_marginLeft="45dp"-->
+    <!--android:layout_marginRight="45dp"-->
+    <!--android:layout_marginTop="15dp"-->
+    <!--android:background="@drawable/button_bg"-->
+    <!--android:text="@string/clean_memory_button" />-->
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/memory_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+
+        app:cpb_cornerRadius="30dp"
+        app:cpb_iconComplete="@mipmap/ic_action_accept"
+        app:cpb_selectorIdle="@drawable/idle_state_selector"
+        app:cpb_textIdle="@string/clean_memory_button" />
+
+    <TextView
+        android:id="@+id/memory_complete_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorMemory"
+        android:gravity="center"
+        android:text="CLEAN UP!"
+        android:visibility="gone" />
+
+
+</LinearLayout>
