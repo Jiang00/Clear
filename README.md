@@ -5,7 +5,7 @@
 
 ## 软件截图
 
-![](http://upload-images.jianshu.io/upload_images/2424518-4115a75b6528df7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://github.com/ZhengShang/Clear/raw/Screenshot01.png)
 
 
 
