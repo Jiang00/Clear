@@ -1,14 +1,10 @@
 package com.aeon.clear;
 
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.TextView;
 
 import com.aeon.clear.adapter.ViewPagerAdapter;
@@ -35,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initDate();
+        initData();
 
 
         mPager.setOffscreenPageLimit(3);
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initDate() {
+    private void initData() {
 //        mText = (TextView) findViewById(R.id.main_text);
         mPager = (ViewPager) findViewById(R.id.main_pager);
         mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
