@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -15,7 +16,10 @@ public class EmptyView extends View {
         super(context);
     }
 
+    public EmptyView(Context context, AttributeSet attrs, int defStyleAttr){
+        super(context,attrs,defStyleAttr);
 
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -24,7 +28,7 @@ public class EmptyView extends View {
 
 
         Paint p = new Paint();
-        p.setColor(getResources().getColor(R.color.colorMemory));
+        p.setColor(getResources().getColor(R.color.colorAccent));
 
         RectF oval = new RectF();
         oval.left = 20;

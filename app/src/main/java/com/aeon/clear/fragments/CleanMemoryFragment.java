@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -53,7 +54,7 @@ public class CleanMemoryFragment extends Fragment {
 
     public static final String TAG = "CleanMemoryFragment";
     private CircularProgressButton mClear;
-    private TextView mText,mSupText;
+    private TextView mText, mSupText;
     private ListView mList;
     private List<String> mDateList;  //需要被清理的进程列表
     private List<HashMap<String, Object>> mRunningAppsNameAndIconAndSize; //正在运行的程序名字和图标
@@ -64,6 +65,7 @@ public class CleanMemoryFragment extends Fragment {
     private CheckBox mSelectAllCheckBox;    //进程全选复选框
     private LinearLayout mHeaderLayout;
     private TextView mCompleteView;
+    private boolean bDoClear = false; //a flag to control whether do doClear function.
 
     public static CleanMemoryFragment newInstance() {
         CleanMemoryFragment fragment = new CleanMemoryFragment();
@@ -86,20 +88,8 @@ public class CleanMemoryFragment extends Fragment {
         mClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        long startMemory = getAvailableMemory(App.getContextObject());
-//                        doClear(getActivity());
-//                        long secondMemory = getAvailableMemory(App.getContextObject());
-//                        long releaseMemory = secondMemory - startMemory;
-//                        if (releaseMemory > 0) {
-//                            Toast.makeText(App.getContextObject(), "释放了" + releaseMemory + "M内存", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }).start();
-                //  new CleanMemoryAsyncTask().execute();
+                doClear(getActivity());
+                //new CleanMemoryAsyncTask().execute();
 
                 deleteAllList();
             }
@@ -180,17 +170,22 @@ public class CleanMemoryFragment extends Fragment {
 
 
     private void doClear(Context context) {
+        long startMemory = getAvailableMemory(App.getContextObject());
         ActivityManager activityManger = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         int size = mDateList.size();
         for (int i = 0; i < size; i++) {
             activityManger.killBackgroundProcesses(mDateList.get(i));
         }
 
+        long secondMemory = getAvailableMemory(App.getContextObject());
+        long releaseMemory = secondMemory - startMemory;
+//        if (releaseMemory >= 0) {
+//            Toast.makeText(App.getContextObject(), "释放了" + releaseMemory + "M内存", Toast.LENGTH_SHORT).show();
+//        }
         // getRunningProcess();
 
 
     }
-
 
     private void deletePattern(final View view, final int position) {
 
@@ -211,11 +206,14 @@ public class CleanMemoryFragment extends Fragment {
                     mClear.setVisibility(View.GONE);
                     mList.setVisibility(View.GONE);
                     mCompleteView.setVisibility(View.VISIBLE);
+                    if (mCompleteView.getVisibility() == View.VISIBLE) {
+                        Toast.makeText(App.getContextObject(), "释放了" + mTotalSize / 1024 + "M内存", Toast.LENGTH_SHORT).show();
+                        mCompleteView.setTextColor(Color.WHITE);
+                    }
                 } else {
 
                     view.setVisibility(View.GONE);
                 }
-
             }
 
             @Override
@@ -297,13 +295,12 @@ public class CleanMemoryFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
             Log.i(TAG, "loading...");
-            AnimationHelper.buttonJumpToLoading(mClear,true);
+            AnimationHelper.buttonJumpToLoading(mClear, true);
             mClear.setProgress(50);
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
-
             getRunningProcess();
             return null;
         }
@@ -315,7 +312,7 @@ public class CleanMemoryFragment extends Fragment {
 
             //从0快速增长到指定大小。
             AnimationHelper.textFastChangeAnimation(mText, 0, mTotalSize / 1024);
-            AnimationHelper.buttonJumpToLoading(mClear,false);
+            AnimationHelper.buttonJumpToLoading(mClear, false);
             mClear.setProgress(0); //恢复到默认样式
         }
 
