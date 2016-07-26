@@ -5,11 +5,11 @@
 
 ## 软件截图
 
-![](https://github.com/ZhengShang/Clear/raw/Screenshot01.png)
+![](https://github.com/ZhengShang/Clear/blob/master/app/src/main/res/raw/Screenshot01.png)
 
 
 
-![](http://upload-images.jianshu.io/upload_images/2424518-02ce640c78836718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://github.com/ZhengShang/Clear/blob/master/app/src/main/res/raw/Scrrenshot02.png)
 
 
 
