@@ -4,13 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/garbage_text"
-        style="@style/fragmentTextView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:background="@color/colorGarbage"
-        android:text="0M" />
+        android:background="@color/colorGarbage">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/total_garbage" />
+
+        <TextView
+            android:id="@+id/garbage_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textSize="90sp" />
+
+        <TextView
+            android:id="@+id/sup_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/garbage_text"
+            android:layout_toRightOf="@id/garbage_text"
+            android:paddingLeft="10dp"
+            android:text="Mb"
+            android:textSize="20sp" />
+    </RelativeLayout>
    <ListView
         android:id="@+id/garbage_list"
         android:layout_width="match_parent"
@@ -30,7 +52,7 @@
         android:layout_marginRight="45dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:text="scan"
+        android:text="开始扫描"
         android:background="@drawable/button_bg"
         />
 

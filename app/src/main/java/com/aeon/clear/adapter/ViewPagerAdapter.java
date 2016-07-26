@@ -43,7 +43,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 viewPagerTitle = context.getResources().getString(R.string.clean_garbage_title);
                 break;
             case 2:
-                viewPagerTitle = context.getResources().getString(R.string.clean_permisson_title);
+                viewPagerTitle = context.getResources().getString(R.string.clean_permission_title);
                 break;
             case 3:
                 viewPagerTitle = context.getResources().getString(R.string.clean_battery_save_title);

@@ -3,7 +3,7 @@
     <string name="clean_memory_button">一键清理</string>
     <string name="clean_memory_title">内存清理</string>
     <string name="clean_garbage_title">垃圾清理</string>
-    <string name="clean_permisson_title">权限管理</string>
+    <string name="clean_permission_title">权限管理</string>
     <string name="clean_battery_save_title">电池保护</string>
     
     <string name="clean_garbage_cache">缓存垃圾</string>
@@ -32,5 +32,6 @@
     <string name="fa_check_circle">&#xf058;</string>
     <string name="memory_running_apps">正在运行的程序 :</string>
     <string name="to_be_clean">可清理的内存为：</string>
+    <string name="total_garbage">可清理的垃圾为：</string>
 
 </resources>

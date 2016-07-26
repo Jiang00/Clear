@@ -1,9 +1,8 @@
 package com.aeon.clear.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -11,10 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,7 +20,6 @@ import com.aeon.clear.App;
 import com.aeon.clear.DataCleanManager;
 import com.aeon.clear.R;
 import com.aeon.clear.adapter.CleanGarbageListAdapter;
-import com.aeon.clear.adapter.WithFontAwesomeListViewAdapter;
 import com.aeon.clear.util.Util;
 
 import java.io.File;
@@ -39,12 +33,11 @@ import java.util.List;
 public class CleanGarbageFragment extends Fragment {
     private static final int PAGER_GARBAGE = 1;
     private static final String TAG = "CleanGarbageFragment";
-    private TextView mText;
     private ListView mListView;
     private Button mButton;
     private CleanGarbageListAdapter mAdapter;
     private ArrayList<HashMap<String, String>> mListData;
-    private TextView mLoad;
+    private TextView mLoad, mGarbageText, mGarbageSupText;
     private boolean isStartAnimation = false;
 
     public static CleanGarbageFragment newInstance() {
@@ -65,10 +58,14 @@ public class CleanGarbageFragment extends Fragment {
 
 
     private void initViews(View view) {
-        mText = (TextView) view.findViewById(R.id.garbage_text);
+        mGarbageText = (TextView) view.findViewById(R.id.garbage_text);
+        mGarbageSupText = (TextView) view.findViewById(R.id.sup_text);
         mListView = (ListView) view.findViewById(R.id.garbage_list);
         mButton = (Button) view.findViewById(R.id.garbage_button);
 
+        //set Garbage text color white
+        mGarbageText.setTextColor(Color.WHITE);
+        mGarbageSupText.setTextColor(Color.WHITE);
 
         GradientDrawable gd = (GradientDrawable) mButton.getBackground();
         gd.setColor(getResources().getColor(R.color.colorGarbage)); //设置对应的颜色
@@ -106,35 +103,36 @@ public class CleanGarbageFragment extends Fragment {
     private void scanCacheFiles() {
 
         if (!isStartAnimation) {
-            mButton.setText("STOP");
+            mButton.setText("取消扫描");
             isStartAnimation = true;
 
         } else {
-            mButton.setText("SCAN");
-            isStartAnimation=false;
+            mButton.setText("开始扫描");
+            isStartAnimation = false;
         }
         mAdapter.setIsStartAnimation(isStartAnimation);
         mAdapter.notifyDataSetChanged();
 
+        //Cannot get every app's detail dir catch.
+        List<PackageInfo> installedApps = Util.getInstalledApps();
+        Log.i(TAG, "installedApps size = " + installedApps.size());
+        long size = 0, singleCacheSize;
+        File file;
+        for (PackageInfo pkg : installedApps) {
+            String pkgName = pkg.packageName;
+            file = new File("/data/data/" + pkgName + "/cache");
+            try {
+                if (file.exists()) {
+                    singleCacheSize = DataCleanManager.getFolderSize(file);
+                    size = singleCacheSize;
+                    Log.i(TAG, pkgName + "--------->" + singleCacheSize);
+                    mGarbageText.setText(size + "");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-//        ArrayList<String> installedApps = Util.getInstalledApps();
-//        Log.i(TAG,"installedApps size = "+installedApps.size());
-//        long size = 0,singleCacheSize;
-//        File file;
-//        for (String pkgName : installedApps) {
-//            file =new File("/data/data/"+pkgName+"/cache");
-//            try {
-//                if (file.exists()) {
-//                    singleCacheSize = DataCleanManager.getFolderSize(file);
-//                    size = singleCacheSize;
-//                    Log.i(TAG, pkgName + "--------->" + singleCacheSize);
-//                    mText.setText(size + "");
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
+        }
 
 
     }
